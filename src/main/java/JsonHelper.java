@@ -1,24 +1,38 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JsonHelper {
+    public static String getBaseUrl(String configPath) {
+        String baseUrl = "";
+        byte[] mapData = null;
+        Map<String, String> jsonMap = new HashMap<>();
+        try {
+            mapData = Files.readAllBytes(Paths.get(configPath));
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            jsonMap = objectMapper.readValue(mapData, HashMap.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return baseUrl = jsonMap.get("address") + jsonMap.get("endpoint") + "?key=" + jsonMap.get("key");
+
+    }
 
 
-
-
-    public String createUrl(String address, String endpoint, String location,
+    public String createUrl(String location,
                             String radius, String keyword, String rankby, String type,
-                            String key, String minprice, String maxprice, String language){
+                             String minprice, String maxprice, String language){
 
-        String url = firstPart(address,endpoint) + location(location) + radius(radius)
-                + keyword(keyword) + rankby(rankby) + type(type) + key(key)
+        String url = getBaseUrl("src\\main\\resources\\json\\config.json") + location(location) + radius(radius)
+                + keyword(keyword) + rankby(rankby) + type(type)
                 + minprice(minprice) + maxprice(maxprice) + language(language) ;
 
         System.out.println("url: " + url);
         return url;
-    }
-
-
-    private String firstPart(String address, String endpoint){
-        return address+endpoint+"?";
     }
 
     private String location(String location){
@@ -52,13 +66,6 @@ public class JsonHelper {
     private String type(String type){
         if(type != null){
             return "&type=" + type;
-        }
-        return "";
-    }
-
-    private String key(String key){
-        if(key != null){
-            return "&key=" + "AIzaSyCWOSz0D-dfNnfv7FJh6pP3dghHM9NmyuQ";  // вот тут должна быть нормальная подгрузка ключа
         }
         return "";
     }

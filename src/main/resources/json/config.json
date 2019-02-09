@@ -1,7 +1,5 @@
 {
-    "configKey":{
-      "address":"https://maps.googleapis.com/maps/api/",
-      "endpoint":"place/nearbysearch/json",
-      "key":"AIzaSyCWOSz0D-dfNnfv7FJh6pP3dghHM9NmyuQ"
-    }
+  "address":"https://maps.googleapis.com/maps/api/",
+  "endpoint":"place/nearbysearch/json",
+  "key":"AIzaSyCWOSz0D-dfNnfv7FJh6pP3dghHM9NmyuQ"
 }
