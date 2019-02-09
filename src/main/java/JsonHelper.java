@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class JsonHelper {
     public static String getBaseUrl(String configPath) {
-        String baseUrl = "";
-        byte[] mapData = null;
+        String baseUrl;
+        byte[] mapData;
         Map<String, String> jsonMap = new HashMap<>();
         try {
             mapData = Files.readAllBytes(Paths.get(configPath));
