@@ -2,6 +2,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,23 @@ public class JsonHelper {
             e.printStackTrace();
         }
         return baseUrl = jsonMap.get("address") + jsonMap.get("endpoint") + "?key=" + jsonMap.get("key");
+
+    }
+    public static Response getResponseParam(String response) {
+        Response resp = new Response();
+        byte[] mapData;
+        Map <String, Object> jsonMap = new HashMap <>();
+        try {
+            mapData = response.getBytes();
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            jsonMap = objectMapper.readValue(mapData, HashMap.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //resp.results = (ArrayList) jsonMap.get("results");
+        resp.status = (String) jsonMap.get("status");
+        return resp;
 
     }
 

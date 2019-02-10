@@ -91,6 +91,8 @@ public class ParameterizedTest {
             assertEquals(200, response.getStatus());
             assertEquals(statusMessage, response.getStatusText());
 
+            System.out.println(JsonHelper.getResponseParam(response.getBody()).status);
+
         } catch (UnirestException e) {
             e.printStackTrace();
         }
