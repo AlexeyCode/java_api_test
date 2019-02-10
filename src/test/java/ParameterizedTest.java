@@ -17,16 +17,16 @@ public class ParameterizedTest {
     public static Object[][]dataForPositiveTest() {
         return new Object[][]{
                 //location, radius, keyword, rankby, type, minprice, maxprice, language
-                {"55.6372523,37.5203141", "25000", null , null, null, null ,null ,null},
-                {"55.6372523,37.5203141", null, null , "distance", "bar",null ,null ,null},
-                {"45.7701495,4.8517567","1500","establishment", null, "bar", "0", null, "es"},
-                {"45.7701495,4.8517567", null, "establishment","distance", "restaurant", null, null, "en"},
-                {"45.7701495,4.8517567", "2000", "establishment" ,"prominence", "cafe", null, "4", "en"},
-                {"55.6372523,37.5203141", "50000", null , null, null, null ,null ,null},
-                {"55.6372523,37.5203141", "1", null , null, null, null ,null ,null},
-                {"90,180", "49999", null , null, null, null ,null ,null},
-                {"-90,-180", "30000", null , null, null, null ,null ,null},
-                {"45.7701495,4.8517567","10500","establishment", null, "bar", "4", null, "es"},
+                {"55.6372523,37.5203141", "25000", null , null, null, null ,null ,null, "OK"},
+                {"55.6372523,37.5203141", null, null , "distance", "bar",null ,null ,null, "OK"},
+                {"45.7701495,4.8517567","1500","establishment", null, "bar", "0", null, "es", "OK"},
+                {"45.7701495,4.8517567", null, "establishment","distance", "restaurant", null, null, "en", "OK"},
+                {"45.7701495,4.8517567", "2000", "establishment" ,"prominence", "cafe", null, "4", "en", "OK"},
+                {"55.6372523,37.5203141", "50000", null , null, null, null ,null ,null, "OK"},
+                {"55.6372523,37.5203141", "1", null , null, null, null ,null ,null, "OK"},
+                {"90,180", "49999", null , null, null, null ,null ,null, "OK"},
+                {"-90,-180", "30000", null , null, null, null ,null ,null, "OK"},
+                {"45.7701495,4.8517567","10500","establishment", null, "bar", "4", null, "es", "OK"}
 
         };
     }
@@ -56,19 +56,19 @@ public class ParameterizedTest {
     @DataProvider
     public static Object[][]dataForNegativeTest() {
         return new Object[][]{
-                //location, radius, keyword, rankby, type, minprice, maxprice, language
-                {null, "1", null , null, null, null ,null ,null},
-                {"91,-181", null, null, "distance", "bar", null, null, null},
-                {"-91,181", null, null, "distance", "bar", null, null, null},
-                {"55,37", "50001", null , null, null, null ,null ,null},
-                {"22,-11", "-1", null , null, null, null ,null ,null},
-                {"45.7701495,4.8517567","2000","establishment", null, "bar", "5", null, null},
-                {"45.7701495,4.8517567","2000","establishment", null, "bar", "-1", null, null},
-                {"45.7701495,4.8517567","2000","establishment", null, "bar", null, "5", null},
-                {"45.7701495,4.8517567","2000","establishment", null, "bar", null, "-1", null},
-                {"55.6372523,37.5203141", null, null, "distance", null, null, null, null},
-                {"45.7701495,4.8517567","2000", null, "distance", "bar", null, null, null},
-                {"45.7701495,4.8517567","50000", null, "distance", "bar", null, "0", null}
+                //location, radius, keyword, rankby, type, minprice, maxprice, language, statusMessage
+                {null, "1", null , null, null, null ,null ,null, "OK"},
+                {"91,-181", null, null, "distance", "bar", null, null, null, "OK"},
+                {"-91,181", null, null, "distance", "bar", null, null, null, "OK"},
+                {"55,37", "50001", null , null, null, null ,null ,null,"OK"},
+                {"22,-11", "-1", null , null, null, null ,null ,null, "OK"},
+                {"45.7701495,4.8517567","2000","establishment", null, "bar", "5", null, null, "OK"},
+                {"45.7701495,4.8517567","2000","establishment", null, "bar", "-1", null, null, "OK"},
+                {"45.7701495,4.8517567","2000","establishment", null, "bar", null, "5", null, "OK"},
+                {"45.7701495,4.8517567","2000","establishment", null, "bar", null, "-1", null, "OK"},
+                {"55.6372523,37.5203141", null, null, "distance", null, null, null, null, "OK"},
+                {"45.7701495,4.8517567","2000", null, "distance", "bar", null, null, null, "OK"},
+                {"45.7701495,4.8517567","50000", null, "distance", "bar", null, "0", null, "OK"},
 
 
         };
@@ -78,7 +78,7 @@ public class ParameterizedTest {
     @UseDataProvider("dataForNegativeTest")
     public  void negativeTest(String location, String radius, String keyword,
                             String rankby, String type, String minprice,
-                            String maxprice, String language) {
+                            String maxprice, String language, String statusMessage) {
 
         HttpResponse<String> response = null;
 
@@ -89,6 +89,7 @@ public class ParameterizedTest {
                     .asString();
 
             assertEquals(200, response.getStatus());
+            assertEquals(statusMessage, response.getStatusText());
 
         } catch (UnirestException e) {
             e.printStackTrace();
