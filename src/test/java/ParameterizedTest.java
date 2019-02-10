@@ -33,7 +33,7 @@ public class ParameterizedTest {
 
     @Test
     @UseDataProvider("dataForPositiveTest")
-    public  void paramTest1(String location, String radius, String keyword,
+    public  void positiveTest(String location, String radius, String keyword,
                            String rankby, String type, String minprice,
                            String maxprice, String language) {
 
@@ -76,7 +76,7 @@ public class ParameterizedTest {
 
     @Test
     @UseDataProvider("dataForNegativeTest")
-    public  void paramTest2(String location, String radius, String keyword,
+    public  void negativeTest(String location, String radius, String keyword,
                             String rankby, String type, String minprice,
                             String maxprice, String language) {
 
