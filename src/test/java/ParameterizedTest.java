@@ -58,16 +58,16 @@ public class ParameterizedTest {
     public static Object[][]dataForNegativeTest() {
         return new Object[][]{
                 //location, radius, keyword, rankby, type, minprice, maxprice, language, statusMessage
-                {null, "1", null , null, null, null ,null ,null, "OK"},
+                {null, "1", null , null, null, null ,"0" ,null, "OK"},
                 {"91,-181", null, null, "distance", "bar", null, null, null, "OK"},
                 {"-91,181", null, null, "distance", "bar", null, null, null, "OK"},
-                {"55,37", "50001", null , null, null, null ,null ,null,"OK"},
+                {"55,37", "50001", null , null, null, null ,"0" ,null,"OK"},
                 {"22,-11", "-1", null , null, null, null ,null ,null, "OK"},
                 {"45.7701495,4.8517567","2000","establishment", null, "bar", "5", null, null, "OK"},
                 {"45.7701495,4.8517567","2000","establishment", null, "bar", "-1", null, null, "OK"},
                 {"45.7701495,4.8517567","2000","establishment", null, "bar", null, "5", null, "OK"},
                 {"45.7701495,4.8517567","2000","establishment", null, "bar", null, "-1", null, "OK"},
-                {"55.6372523,37.5203141", null, null, "distance", null, null, null, null, "OK"},
+                {"55.6372523,37.5203141", null, null, "distance", null, null, "0", null, "OK"},
                 {"45.7701495,4.8517567","2000", null, "distance", "bar", null, null, null, "OK"},
                 {"45.7701495,4.8517567","50000", null, "distance", "bar", null, "0", null, "OK"},
 
