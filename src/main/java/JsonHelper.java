@@ -55,7 +55,7 @@ public class JsonHelper {
 
     private String location(String location){
         if(location != null){
-            return "location=" + location;
+            return "&location=" + location;
         }
         return "";
     }

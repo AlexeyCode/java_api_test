@@ -20,13 +20,13 @@ public class ParameterizedTest {
                 {"55.6372523,37.5203141", "25000", null , null, null, null ,null ,null, "OK"},
                 {"55.6372523,37.5203141", null, null , "distance", "bar",null ,null ,null, "OK"},
                 {"45.7701495,4.8517567","1500","establishment", null, "bar", "0", null, "es", "OK"},
-                {"45.7701495,4.8517567", null, "establishment","distance", "restaurant", null, null, "en", "OK"},
-                {"45.7701495,4.8517567", "2000", "establishment" ,"prominence", "cafe", null, "4", "en", "OK"},
+                {"45.7701495,4.8517567", null, "establishment","distance", "restaurant", null, null,"en", "OK"},
+                {"45.7701495,4.8517567", "2000", "establishment" ,"prominence", "cafe", null, "4",null,  "en", "OK"},
                 {"55.6372523,37.5203141", "50000", null , null, null, null ,null ,null, "OK"},
                 {"55.6372523,37.5203141", "1", null , null, null, null ,null ,null, "OK"},
                 {"90,180", "49999", null , null, null, null ,null ,null, "OK"},
                 {"-90,-180", "30000", null , null, null, null ,null ,null, "OK"},
-                {"45.7701495,4.8517567","10500","establishment", null, "bar", "4", null, "es", "OK"}
+                {"45.7701495,4.8517567","10500","establishment", null, "bar", "4", null, null, "OK"}
 
         };
     }
@@ -35,7 +35,7 @@ public class ParameterizedTest {
     @UseDataProvider("dataForPositiveTest")
     public  void positiveTest(String location, String radius, String keyword,
                            String rankby, String type, String minprice,
-                           String maxprice, String language) {
+                           String maxprice, String language, String statusMessage) {
 
         HttpResponse<String> response = null;
 
@@ -46,6 +46,7 @@ public class ParameterizedTest {
                     .asString();
 
             assertEquals(200, response.getStatus());
+
 
         } catch (UnirestException e) {
             e.printStackTrace();
@@ -89,7 +90,7 @@ public class ParameterizedTest {
                     .asString();
 
             assertEquals(200, response.getStatus());
-            assertEquals(statusMessage, response.getStatusText());
+
 
             System.out.println(JsonHelper.getResponseParam(response.getBody()).status);
 
