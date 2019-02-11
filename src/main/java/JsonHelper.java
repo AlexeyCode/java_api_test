@@ -34,7 +34,7 @@ public class JsonHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //resp.results = (ArrayList) jsonMap.get("results");
+        resp.results = (ArrayList) jsonMap.get("results");
         resp.status = (String) jsonMap.get("status");
         return resp;
 

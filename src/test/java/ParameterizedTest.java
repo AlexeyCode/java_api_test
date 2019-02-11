@@ -6,6 +6,8 @@ import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 import com.mashape.unirest.http.HttpResponse;
 
 
@@ -46,8 +48,10 @@ public class ParameterizedTest {
                     .asString();
 
             assertEquals(200, response.getStatus());
+            assertNotEquals(0, JsonHelper.getResponseParam(response.getBody()).results.size());
             System.out.println(JsonHelper.getResponseParam(response.getBody()).status);
 
+            System.out.println(JsonHelper.getResponseParam(response.getBody()).results.getClass());
         } catch (UnirestException e) {
             e.printStackTrace();
         }
@@ -91,6 +95,7 @@ public class ParameterizedTest {
 
             assertEquals(200, response.getStatus());
             assertEquals(statusMessage, response.getStatusText());
+            assertEquals(0, JsonHelper.getResponseParam(response.getBody()).results.size());
 
             System.out.println(JsonHelper.getResponseParam(response.getBody()).status);
 
