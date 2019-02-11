@@ -27,7 +27,7 @@ public class JsonHelper {
         byte[] mapData;
         Map <String, Object> jsonMap = new HashMap <>();
         try {
-            mapData = response.getBytes();
+            mapData = response.getBytes("UTF-8");
             ObjectMapper objectMapper = new ObjectMapper();
 
             jsonMap = objectMapper.readValue(mapData, HashMap.class);
