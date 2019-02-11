@@ -17,7 +17,7 @@ public class ParameterizedTest {
     public static Object[][]dataForPositiveTest() {
         return new Object[][]{
                 //location, radius, keyword, rankby, type, minprice, maxprice, language
-                {"55.6372523,37.5203141", "25000", null , null, null, null ,null ,null, "OK"},
+                {"55.6372523,37.5203141", "25000", null , null, null, null , null, null, "OK"},
                 {"55.6372523,37.5203141", null, null , "distance", "bar",null ,null ,null, "OK"},
                 {"45.7701495,4.8517567","1500","establishment", null, "bar", "0", null, "es", "OK"},
                 {"45.7701495,4.8517567", null, "establishment","distance", "restaurant", null, null,"en", "OK"},
